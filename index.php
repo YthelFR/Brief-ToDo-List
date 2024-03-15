@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToDo Liste</title>
-</head>
-<body>
-    
-</body>
-</html>
+<?php
+echo "Cet index est normalement inaccessible, si le .htaccess fait correctement son travail.";
+
+header('location: /public/');
