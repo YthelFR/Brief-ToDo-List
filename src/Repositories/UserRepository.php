@@ -66,6 +66,19 @@ class UserRepository
 
         return $statement->fetchAll(PDO::FETCH_OBJ);
     }
+
+    public function getThoseUsersByMail(string $mail): array
+    {
+        $sql = "SELECT * FROM " . PREFIXE . "user WHERE MAIL = :Mail";
+
+        $statement = $this->DB->prepare($sql);
+
+        $statement->bindParam(':Mail', $mail);
+
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_OBJ);
+    }
     // Construire la méthode CreateThisPriority()
 
     public function CreateThisUser(User $user): bool

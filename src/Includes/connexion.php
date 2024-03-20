@@ -1,15 +1,25 @@
+<?php
+use src\Models\User;
+?>
+
 <!-- ----- ESPACE CONNEXION ----- -->
-<div class="unset bg-white lg:w-4/12 md:6/12 w-10/12 m-auto my-10 shadow-md">
+<div id="navbar" class="hidden right-0 w-18 bg-white  w-80 m-auto my-5 shadow-md">
     <div class="py-8 px-8 rounded-xl">
         <h1 class="font-medium text-2xl mt-3 text-center">Connexion</h1>
         <form action="" class="mt-6">
             <div class="my-5 text-sm">
                 <label for="username" class="block text-black">Nom d'utilisateur</label>
-                <input type="text" autofocus id="username" class="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full" placeholder="Nom d'utilisateur" />
+                <input type="text" autofocus id="username" class="emailInput rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full" placeholder="Nom d'utilisateur" />
+                <?php if ($Messages_Erreurs === 5) { ?>
+                    <div class="message echec">Veuillez remplir le champ.</div>
+                <?php } ?>
             </div>
             <div class="my-5 text-sm">
                 <label for="password" class="block text-black">Mot de passe</label>
-                <input type="password" id="password" class="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full" placeholder="Mot de passe" />
+                <input type="password" id="password" class="passwordInput rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full" placeholder="Mot de passe" />
+                <?php if ($Messages_Erreurs === 5) { ?>
+                    <div class="message echec">Veuillez remplir le champ.</div>
+                <?php } ?>
                 <div class="flex justify-end mt-2 text-xs text-gray-600">
                     <a href="#">Mot de passe oublié ?</a>
                 </div>

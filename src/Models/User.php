@@ -1,4 +1,5 @@
 <?php
+
 namespace src\Models;
 
 
@@ -35,7 +36,7 @@ class User
 
     /**
      * Get the value of Id
-     */ 
+     */
     public function getId()
     {
         return $this->Id;
@@ -45,17 +46,19 @@ class User
      * Set the value of Id
      *
      * @return  self
-     */ 
+     */
     public function setId($Id)
     {
-        $this->Id = $Id;
-
-        return $this;
+        if (is_string($id) && $id == "à créer") {
+            $this->_id = $this->id_utilisateur();
+        } else {
+            $this->_id = $id;
+        }
     }
 
     /**
      * Get the value of Lastname
-     */ 
+     */
     public function getLastname()
     {
         return $this->Lastname;
@@ -65,7 +68,7 @@ class User
      * Set the value of Lastname
      *
      * @return  self
-     */ 
+     */
     public function setLastname($Lastname)
     {
         $this->Lastname = $Lastname;
@@ -75,7 +78,7 @@ class User
 
     /**
      * Get the value of Firstname
-     */ 
+     */
     public function getFirstname()
     {
         return $this->Firstname;
@@ -85,7 +88,7 @@ class User
      * Set the value of Firstname
      *
      * @return  self
-     */ 
+     */
     public function setFirstname($Firstname)
     {
         $this->Firstname = $Firstname;
@@ -95,7 +98,7 @@ class User
 
     /**
      * Get the value of Password
-     */ 
+     */
     public function getPassword()
     {
         return $this->Password;
@@ -105,7 +108,7 @@ class User
      * Set the value of Password
      *
      * @return  self
-     */ 
+     */
     public function setPassword($Password)
     {
         $this->Password = $Password;
@@ -115,7 +118,7 @@ class User
 
     /**
      * Get the value of Mail
-     */ 
+     */
     public function getMail()
     {
         return $this->Mail;
@@ -125,11 +128,36 @@ class User
      * Set the value of Mail
      *
      * @return  self
-     */ 
+     */
     public function setMail($Mail)
     {
         $this->Mail = $Mail;
 
         return $this;
+    }
+
+    private function id_utilisateur()
+    {
+        $Database = new Database();
+        $utilisateurs = $Database->ToutLesUtilisateurs();
+        $Ids = [];
+        foreach ($utilisateurs as $utilisateur) {
+            $Ids[] = $utilisateur->getId();
+        }
+        $i = 1;
+        $unique = false;
+        while ($unique === false) {
+            if (in_array($i, $Ids)) {
+                $i++;
+            } else {
+                $unique = true;
+            }
+        }
+        return $i;
+    }
+
+    public function passwordverify(string $password): bool
+    {
+        return password_verify($password, $this->getpassword());
     }
 }
