@@ -3,7 +3,7 @@
     <!-- Author: FormBold Team -->
     <!-- Learn More: https://formbold.com -->
     <div class="mx-auto w-full max-w-[550px]">
-        <form action="https://formbold.com/s/FORM_ID" method="POST">
+        <div action="https://formbold.com/s/FORM_ID" method="POST">
             <div class="-mx-3 flex flex-wrap">
                 <?php if ($Messages_Erreurs === 1) { ?>
                     <div class="message echec">Veuillez remplir tous les champs.</div>
@@ -19,7 +19,6 @@
                         <?php } ?>
                     </div>
                 </div>
-                <?php var_dump(isset($_POST["taskName"])); ?>
                 <div class="w-full px-3 sm:w-1/2">
                     <div class="mb-5">
                         <label for="dateTask" class="mb-3 block text-base font-medium text-white">
@@ -89,6 +88,6 @@
                     Envoyer
                 </button>
             </div>
-        </form>
+                    </div>
     </div>
 </div>

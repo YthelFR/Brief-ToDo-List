@@ -104,4 +104,12 @@ final class Database
             return false;
         }
     }
+    public function getAllUsers()
+    {
+        $sql = "SELECT * FROM " . PREFIXE . "user;";
+
+        $retour = $this->DB->query($sql)->fetchAll(PDO::FETCH_OBJ);
+
+        return $retour;
+    }
 }

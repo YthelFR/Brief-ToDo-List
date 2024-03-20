@@ -31,11 +31,14 @@ if (isset($_GET['erreur'])) {
     </div>
     </div>
     <?php include_once __DIR__ . '/../src/Includes/connexion.php'; ?>
+    <?php include_once __DIR__ . '/../src/Includes/Register.php'; ?>
+
 </main>
 <?php include_once __DIR__ . '/../src/Includes/footer.php';
 ?>
 </body>
 <script src="https://cdn.tailwindcss.com"></script>
-<script src="./assets/js/script.js"></script>
+<script src="./assets/js/script.js" type="module"></script>
+<script src="./assets/js/darkmode.js"></script>
 
 </html>

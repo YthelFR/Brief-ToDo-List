@@ -3,7 +3,7 @@ use src\Models\User;
 ?>
 
 <!-- ----- ESPACE CONNEXION ----- -->
-<div id="navbar" class="hidden right-0 w-18 bg-white  w-80 m-auto my-5 shadow-md">
+<div id="navbar" class="hidden right-0 bg-white w-80 m-auto my-5 shadow-md">
     <div class="py-8 px-8 rounded-xl">
         <h1 class="font-medium text-2xl mt-3 text-center">Connexion</h1>
         <form action="" class="mt-6">
@@ -43,7 +43,7 @@ use src\Models\User;
             </div>
         </div>
 
-        <p class="mt-12 text-xs text-center font-light text-gray-400"> Vous n'avez pas de compte ? <a href="#" class="text-black font-medium"> Créez-le ! </a> </p>
+        <p class="mt-12 text-xs text-center font-light text-gray-400"> Vous n'avez pas de compte ? <button class="buttonRegisterBar text-black font-medium"> Créez-le ! </button> </p>
 
     </div>
 </div>

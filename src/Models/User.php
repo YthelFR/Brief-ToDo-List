@@ -49,10 +49,10 @@ class User
      */
     public function setId($Id)
     {
-        if (is_string($id) && $id == "à créer") {
+        if (is_string($Id) && $Id == "à créer") {
             $this->_id = $this->id_utilisateur();
         } else {
-            $this->_id = $id;
+            $this->_id = $Id;
         }
     }
 
@@ -139,7 +139,7 @@ class User
     private function id_utilisateur()
     {
         $Database = new Database();
-        $utilisateurs = $Database->ToutLesUtilisateurs();
+        $utilisateurs = $Database->getAllUsers();
         $Ids = [];
         foreach ($utilisateurs as $utilisateur) {
             $Ids[] = $utilisateur->getId();

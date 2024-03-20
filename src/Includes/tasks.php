@@ -17,15 +17,3 @@
     </div>
 </div>
 
-<div class="pl-5 pr-5">
-    <?php
-
-    foreach ($tasks as $task) {
-        echo "
-        <div class='min-w-auto w-48 h-10 bg-neutral-50 p-2 rounded-l-full text-black font-semibold'>
-        <div class=' pl-4 mt-2 h-12 truncate'>" . $task->getTitle() . " </div>
-        <div class=' pl-4 italic capitalize text-sm' > " . $task->getName() . "</div>
-        <div class=' text-displxl text-black bold pl-4'>" . $task->getDescription() . "€</div></div>";
-    }
-    ?>
-</div>
