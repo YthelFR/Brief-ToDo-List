@@ -2,6 +2,7 @@
 
 namespace src\Models;
 
+use src\Models\Database;
 
 class User
 {
@@ -49,11 +50,7 @@ class User
      */
     public function setId($Id)
     {
-        if (is_string($Id) && $Id == "à créer") {
-            $this->_id = $this->id_utilisateur();
-        } else {
-            $this->_id = $Id;
-        }
+        $this->_id = $Id;
     }
 
     /**
@@ -134,30 +131,5 @@ class User
         $this->Mail = $Mail;
 
         return $this;
-    }
-
-    private function id_utilisateur()
-    {
-        $Database = new Database();
-        $utilisateurs = $Database->getAllUsers();
-        $Ids = [];
-        foreach ($utilisateurs as $utilisateur) {
-            $Ids[] = $utilisateur->getId();
-        }
-        $i = 1;
-        $unique = false;
-        while ($unique === false) {
-            if (in_array($i, $Ids)) {
-                $i++;
-            } else {
-                $unique = true;
-            }
-        }
-        return $i;
-    }
-
-    public function passwordverify(string $password): bool
-    {
-        return password_verify($password, $this->getpassword());
     }
 }

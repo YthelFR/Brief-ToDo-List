@@ -2,7 +2,7 @@
 
 namespace src\Repositories;
 
-use Models\DbConnexion\DbConnexion;
+
 use src\Models\Database;
 use src\Models\User;
 use PDO;
@@ -14,7 +14,7 @@ class UserRepository
     private $pdo;
 
 
-    public function __construct(DbConnexion $dbConnexion)
+    public function __construct()
     {
         $database = new Database;
         $this->DB = $database->getDB();
@@ -29,7 +29,7 @@ class UserRepository
     {
         $sql = "SELECT * FROM " . PREFIXE . "user;";
 
-        $retour = $this->DB->query($sql)->fetchAll(PDO::FETCH_OBJ);
+        $retour = $this->DB->query($sql)->fetchAll(PDO::FETCH_CLASS, User::class);
 
         return $retour;
     }
@@ -44,7 +44,7 @@ class UserRepository
      * Pour éviter des injections on prépare (on désamorce) la requête.
      */
 
-    public function getThisUserById($id): object
+    public function getThisUserById($id): User
     {
         $sql = "SELECT * FROM " . PREFIXE . "user WHERE id = :id";
 
@@ -52,7 +52,7 @@ class UserRepository
         $statement->bindParam(':id', $id);
         $statement->execute();
 
-        $retour = $statement->fetch(PDO::FETCH_OBJ);
+        $retour = $statement->fetch(PDO::FETCH_CLASS, User::class);
 
         return $retour;
     }
@@ -71,7 +71,7 @@ class UserRepository
         return $statement->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function getThoseUsersByMail(string $mail): array
+    public function getThoseUsersByMail(string $mail) : User
     {
         $sql = "SELECT * FROM " . PREFIXE . "user WHERE MAIL = :Mail";
 
@@ -81,18 +81,17 @@ class UserRepository
 
         $statement->execute();
 
-        return $statement->fetchAll(PDO::FETCH_OBJ);
+        return $statement->fetchAll(PDO::FETCH_CLASS, User::class);
     }
     // Construire la méthode CreateThisPriority()
 
     public function CreateThisUser(User $user): bool
     {
-        $sql = "INSERT INTO " . PREFIXE . "user (ID, LASTNAME, FIRSTNAME, PASSWORD, MAIL) VALUES (:ID, :LASTNAME, :FIRSTNAME, :PASSWORD, :MAIL)";
+        $sql = "INSERT INTO " . PREFIXE . "user (LASTNAME, FIRSTNAME, PASSWORD, MAIL) VALUES (NULL, :LASTNAME, :FIRSTNAME, :PASSWORD, :MAIL)";
 
         $statement = $this->DB->prepare($sql);
 
         $retour = $statement->execute([
-            ':ID' => $user->getId(),
             ':LASTNAME' => $user->getLastname(),
             ':FIRSTNAME' => $user->getFirstname(),
             ':PASSWORD' => $user->getPassword(),
@@ -167,18 +166,6 @@ class UserRepository
 
     public function register(User $user)
     {
-
-        // On peut appliquer la fonction filterValidateEmail 
-        // si on souhaite vérifier que l'email existe déja , il faut faire une requête en ce sens 
-
-
-
-        // On a besoin de hasher le mdp , j'utilise donc la fonction hash de php 
-        // qui attend en paramètre un nom d'algorithme de hashage, ici j'utilise whirlpool , qui est assez sécurisé,
-        // mais on pourait aussi utiliser SHA256, ou une bibliothèque de hashage spécialisée comme BCRYPT ou Argon2, ou d'autres...
-        // Le premier paramètre de cette fonction native de php est l'algo de hashage à utiliser, le deuxième, la chaine de caractères 
-        // à hasher
-        // php connaît deja whirlpool
         $password = hash("whirlpool", $user->getPassword());
 
         try {
@@ -186,7 +173,7 @@ class UserRepository
             // ATTENTION à avoir le BON nombre de champs , conformément à la table concernée
             $stmt = $this->pdo->prepare("INSERT INTO user VALUES(NULL, ?, ?, ?, ?)");
             // ICI , je dois faire ATTENTION à passer les éléments dans le même ordre que dans ma table USER
-            $stmt->execute([$user->getFirstname(), $user->getLastname(), $user->getMail(), $password]);
+            $stmt->execute([$user->getLastname(), $user->getFirstname(), $password, $user->getMail()]);
 
             return $stmt->rowCount() == 1;
         } catch (\PDOException $e) {

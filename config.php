@@ -16,3 +16,7 @@
         define('ERREUR_DATE_EMPTY', 3);
         define('ERREUR_PRIORITY_EMPTY', 4);
         define('ERREUR_LOGIN', 5);
+        define('ERREUR_PASSWORD_LENGTH', 6);
+        define('PASSWORD_PAS_IDENTIQUE', 7);
+        define('ERREUR_EMAIL', 8);
+        define('ERREUR_ENREGISTREMENT', 9);

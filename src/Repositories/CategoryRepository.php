@@ -39,7 +39,7 @@ class CategoryRepository
      * Pour éviter des injections on prépare (on désamorce) la requête.
      */
 
-    public function getThisCategoryById($id): object
+    public function getThisCategoryById($id): Category
     {
         $sql = "SELECT * FROM " . PREFIXE . "category WHERE id = :id";
 
@@ -47,14 +47,14 @@ class CategoryRepository
         $statement->bindParam(':id', $id);
         $statement->execute();
 
-        $retour = $statement->fetch(PDO::FETCH_OBJ);
+        $retour = $statement->fetch(PDO::FETCH_CLASS, Category::class);
 
         return $retour;
     }
     // Construire la méthode getThoseCategoriesByName() Et oui, parce qu'on peut avoir plusieurs films avec le même nom !
     // Bien penser à préfixer vos tables ;)
 
-    public function getThoseCategoriesByName(string $name): array
+    public function getThisCategoryByName(string $name): array
     {
         $sql = "SELECT * FROM " . PREFIXE . "category WHERE NAME = :name";
 
@@ -64,18 +64,17 @@ class CategoryRepository
 
         $statement->execute();
 
-        return $statement->fetchAll(PDO::FETCH_OBJ);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
     // Construire la méthode CreateThisCategory()
 
     public function CreateThisCategory(Category $category): bool
     {
-        $sql = "INSERT INTO " . PREFIXE . "category (ID, NOM) VALUES (:ID, :NOM)";
+        $sql = "INSERT INTO " . PREFIXE . "category (NOM) VALUES (:NOM)";
 
         $statement = $this->DB->prepare($sql);
 
         $retour = $statement->execute([
-            ':ID' => $category->getId(),
             ':NOM' => $category->getName()
         ]);
 

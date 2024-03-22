@@ -11,7 +11,6 @@ class Task
     private $IdUser;
     private $IdPriority;
 
-
     public function __construct(array $data)
     {
         $this->hydrate($data);

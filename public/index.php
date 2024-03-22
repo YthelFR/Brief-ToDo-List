@@ -7,6 +7,16 @@ if (isset($_GET['erreur'])) {
     $Messages_Erreurs = (int) $_GET['erreur'];
 }
 
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+    header('Content-Type: application/json');
+    echo "en dur";
+    require_once __DIR__ . '/../src/traitement_user.php';
+
+
+    die;
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -40,5 +50,6 @@ if (isset($_GET['erreur'])) {
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="./assets/js/script.js" type="module"></script>
 <script src="./assets/js/darkmode.js"></script>
+<script src="./assets/js/register.js" async></script>
 
 </html>
