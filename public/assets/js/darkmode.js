@@ -33,6 +33,7 @@ function switchTheme() {
     setTimeout(() => {
       switchToggle.innerHTML = darkIcon;
     }, 250);
+    isDarkmode = true;
   } else {
     switchToggle.classList.add("bg-yellow-500", "-translate-x-2");
     switchToggle.classList.remove("bg-gray-700", "translate-x-full");
@@ -45,6 +46,7 @@ function switchTheme() {
     setTimeout(() => {
       switchToggle.innerHTML = lightIcon;
     }, 250);
+    isDarkmode = false;
   }
 }
 

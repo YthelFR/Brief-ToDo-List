@@ -1,7 +1,5 @@
 <?php
 
-// On charge les classes et les repositories à la demande :
-
 use src\Models\Database;
 
 spl_autoload_register('chargerClasses');

@@ -1,5 +1,4 @@
 <?php
-use src\Models\User;
 ?>
 
 <!-- ----- ESPACE CONNEXION ----- -->
@@ -8,15 +7,15 @@ use src\Models\User;
         <h1 class="font-medium text-2xl mt-3 text-center">Connexion</h1>
         <form action="" class="mt-6">
             <div class="my-5 text-sm">
-                <label for="username" class="block text-black">Nom d'utilisateur</label>
-                <input type="text" autofocus id="username" class="emailInput rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full" placeholder="Nom d'utilisateur" />
+                <label for="email" class="block text-black">E-mail</label>
+                <input type="text" autofocus id="email" class="emailInput rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full" placeholder="Nom d'utilisateur" />
                 <?php if ($Messages_Erreurs === 5) { ?>
                     <div class="message echec">Veuillez remplir le champ.</div>
                 <?php } ?>
             </div>
             <div class="my-5 text-sm">
                 <label for="password" class="block text-black">Mot de passe</label>
-                <input type="password" id="password" class="passwordInput rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full" placeholder="Mot de passe" />
+                <input type="password" id="passwordCheck" class="passwordInput rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full" placeholder="Mot de passe" />
                 <?php if ($Messages_Erreurs === 5) { ?>
                     <div class="message echec">Veuillez remplir le champ.</div>
                 <?php } ?>

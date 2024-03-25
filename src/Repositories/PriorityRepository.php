@@ -18,8 +18,7 @@ class PriorityRepository
         require_once __DIR__ . '/../../config.php';
     }
 
-    // Exemple d'une requête avec query :
-    // il n'y a pas de risques, car aucun paramètre venant de l'extérieur n'est demandé dans le sql.
+
     public function getAllPriorities()
     {
         $sql = "SELECT * FROM " . PREFIXE . "priority;";
@@ -28,16 +27,7 @@ class PriorityRepository
 
         return $retour;
     }
-    /**
-     * Exemple d'une requête préparée, avec prepare, bindParam et execute :
-     * - prepare : permet d'écrire la requête sql, en remplaçant les nom des variables par :variable.
-     * Il est aussi possible de mettre un '?', mais c'est moins lisible, surtout quand on a beaucoup de paramètres à passer.
-     * - bindParam : permet d'associer un :variable avec la vraie variable.
-     * - execute : permet d'exécuter le sql complet. 
-     * 
-     * L'id est un paramètre donné par le code, il y a un risque d'altération de la donnée.
-     * Pour éviter des injections on prépare (on désamorce) la requête.
-     */
+
 
     public function getThisPriorityById($id): object
     {
@@ -51,7 +41,6 @@ class PriorityRepository
 
         return $retour;
     }
-    // Construire la méthode getThosePrioritiesByName()
 
     public function getThosePrioritiesByName(string $name): array
     {
@@ -65,7 +54,6 @@ class PriorityRepository
 
         return $statement->fetchAll(PDO::FETCH_OBJ);
     }
-    // Construire la méthode CreateThisPriority()
 
     public function CreateThisPriority(Priority $priority): bool
     {
@@ -81,7 +69,6 @@ class PriorityRepository
         return $retour;
     }
 
-    // Construire la méthode updateThisPriority()
     public function updateThisPriority(Priority $priority): bool
     {
         $sql = "UPDATE " . PREFIXE . "priority 
@@ -99,7 +86,6 @@ class PriorityRepository
         return $retour;
     }
 
-    // Construire la méthode deleteThisFilm()
     public function deleteThisPriority(int $ID): bool
     {
         try {

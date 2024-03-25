@@ -8,10 +8,9 @@ if (isset($_GET['erreur'])) {
 }
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
-    header('Content-Type: application/json');
+    // header('Content-Type: application/json');
     echo "en dur";
     require_once __DIR__ . '/../src/traitement_user.php';
-
 
     die;
 }
@@ -25,7 +24,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/../assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
     <title>ToDo Liste</title>

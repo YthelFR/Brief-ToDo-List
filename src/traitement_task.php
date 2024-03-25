@@ -1,5 +1,4 @@
 <?php
-require 'config.php';
 
 use src\Models\Database;
 use src\Models\Priority;

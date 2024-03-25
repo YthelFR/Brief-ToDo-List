@@ -1,12 +1,9 @@
-export default function registerMenu() {
-  let loginBar = document.querySelector("#navbar");
+export default function afficherMenuRegister() {
+  let buttonRegister = document.querySelector("#register");
   let registerBar = document.querySelector("#registerBar");
-  let buttonRegisterBar = document.querySelector("#buttonRegisterBar");
 
-  buttonRegisterBar.addEventListener("click", () => {
-    loginBar.classList.toggle("fixed");
-    loginBar.classList.toggle("hidden");
-    registerBar.classList.toggle("fixed");
+  buttonRegister.addEventListener("click", () => {
+    registerBar.classList.toggle("static");
     registerBar.classList.toggle("hidden");
   });
 }

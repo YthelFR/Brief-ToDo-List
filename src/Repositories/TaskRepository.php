@@ -19,8 +19,6 @@ class TaskRepository
         require_once __DIR__ . '/../../config.php';
     }
 
-    // Exemple d'une requête avec query :
-    // il n'y a pas de risques, car aucun paramètre venant de l'extérieur n'est demandé dans le sql.
     public function getAllTasks()
     {
         $sql = "SELECT * FROM " . PREFIXE . "task;";
@@ -29,16 +27,6 @@ class TaskRepository
 
         return $retour;
     }
-    /**
-     * Exemple d'une requête préparée, avec prepare, bindParam et execute :
-     * - prepare : permet d'écrire la requête sql, en remplaçant les nom des variables par :variable.
-     * Il est aussi possible de mettre un '?', mais c'est moins lisible, surtout quand on a beaucoup de paramètres à passer.
-     * - bindParam : permet d'associer un :variable avec la vraie variable.
-     * - execute : permet d'exécuter le sql complet. 
-     * 
-     * L'id est un paramètre donné par le code, il y a un risque d'altération de la donnée.
-     * Pour éviter des injections on prépare (on désamorce) la requête.
-     */
 
     public function getThisTaskById($id): object
     {
@@ -52,7 +40,6 @@ class TaskRepository
 
         return $retour;
     }
-    // Construire la méthode getThoseTasksByTitle()
 
     public function getThoseTasksByTitle(string $title): array
     {
@@ -66,7 +53,6 @@ class TaskRepository
 
         return $statement->fetchAll(PDO::FETCH_OBJ);
     }
-    // Construire la méthode CreateThisTask()
 
     public function CreateThisTask(Task $task): bool
     {
@@ -86,7 +72,6 @@ class TaskRepository
         return $retour;
     }
 
-    // Construire la méthode updateThisTask()
     public function updateThisTask(Task $task): bool
     {
         $sql = "UPDATE " . PREFIXE . "task 
@@ -109,7 +94,6 @@ class TaskRepository
         return $retour;
     }
 
-    // Construire la méthode deleteThisTask()
     public function deleteThisTask(int $ID): bool
     {
         try {

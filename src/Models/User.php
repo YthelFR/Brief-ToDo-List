@@ -30,9 +30,9 @@ class User
         }
     }
 
-    public function __set($name, $value)
+    public function __set($Lastname, $value)
     {
-        $this->hydrate([$name => $value]);
+        $this->hydrate([$Lastname => $value]);
     }
 
     /**
