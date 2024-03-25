@@ -19,7 +19,7 @@ class UserRepository
         $database = new Database;
         $this->DB = $database->getDB();
 
-        require_once __DIR__ . '/../../config.php';
+        require_once __DIR__ . './../../config.php';
         $this->pdo = $dbConnexion->getPDO();
     }
 
@@ -76,9 +76,10 @@ class UserRepository
     public function CreateThisUser(User $user): bool
     {
         try {
-            $sql = "INSERT INTO " . PREFIXE . "user (LASTNAME, FIRSTNAME, PASSWORD, MAIL) VALUES (:LASTNAME, :FIRSTNAME, :PASSWORD, :MAIL)";
+            $sql = "INSERT INTO " . PREFIXE . "user (ID, LASTNAME, FIRSTNAME, PASSWORD, MAIL) VALUES (:ID, :LASTNAME, :FIRSTNAME, :PASSWORD, :MAIL)";
             $statement = $this->DB->prepare($sql);
             $retour = $statement->execute([
+                ':ID' => NULL,
                 ':LASTNAME' => $user->getLastname(),
                 ':FIRSTNAME' => $user->getFirstname(),
                 ':PASSWORD' => $user->getPassword(),

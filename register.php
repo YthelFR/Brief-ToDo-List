@@ -5,17 +5,17 @@ use src\Models\Database;
 use src\Models\User;
 use src\Repositories\UserRepository;
 
-include("./autoloader.php");
+include("./src/autoload.php");
 
 if (isset($_POST)) {
     $data = file_get_contents("php://input");
-    $decodedUser = (json_decode($data, true));
+    $decodedUser = json_decode($data, true);
 
 
     $user = new User($decodedUser);
 
     $dbConnexion = new Database();
-    $userManager = new UserRepository($dbConnexion);
+    $userManager = new UserRepository();
 
     if ($userManager->checkUserExist($user)) {
         echo "Email already taken";

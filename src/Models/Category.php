@@ -1,7 +1,6 @@
 <?php
 namespace src\Models;
 
-use src\Models\Database;
 
 class Category
 {
